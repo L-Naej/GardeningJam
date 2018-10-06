@@ -1,11 +1,12 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "HarvestMoonPlayerController.h"
-#include "AI/Navigation/NavigationSystem.h"
+#include "NavigationSystem.h"
 #include "Runtime/Engine/Classes/Components/DecalComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "HarvestMoonCharacter.h"
 #include "Vegetable.h"
+#include "Runtime/AIModule/Classes/Blueprint/AIBlueprintHelperLibrary.h"
 
 AHarvestMoonPlayerController::AHarvestMoonPlayerController()
 {
@@ -59,7 +60,7 @@ void AHarvestMoonPlayerController::MoveToMouseCursor()
 		{
 			if (MyPawn->GetCursorToWorld())
 			{
-				UNavigationSystem::SimpleMoveToLocation(this, MyPawn->GetCursorToWorld()->GetComponentLocation());
+				UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, MyPawn->GetCursorToWorld()->GetComponentLocation());
 			}
 		}
 	}
@@ -96,13 +97,13 @@ void AHarvestMoonPlayerController::SetNewMoveDestination(const FVector DestLocat
 	APawn* const MyPawn = GetPawn();
 	if (MyPawn)
 	{
-		UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
+		// UNavigationSystemV1* const NavSys = UNavigationSystemV1::GetNavigationSystem(MyPawn->GetWorld());
 		float const Distance = FVector::Dist(DestLocation, MyPawn->GetActorLocation());
 
 		// We need to issue move command only if far enough in order for walk animation to play correctly
-		if (NavSys && (Distance > 120.0f))
+		if (Distance > 120.0f)
 		{
-			NavSys->SimpleMoveToLocation(this, DestLocation);
+			UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, DestLocation);
 		}
 	}
 }

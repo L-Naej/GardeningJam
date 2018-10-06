@@ -1,10 +1,10 @@
 .vs/
-Binaries/
-Build/
-Intermediate/
-Saved/
-Content/StarterContent/
-DerivedDataCache/
+Binaries/*
+Build/*
+Intermediate/*
+Saved/*
+Content/StarterContent/*
+DerivedDataCache/*
 HarvestMoon.sln
 HarvestMoon.uproject
 CMakeLists.txt
@@ -28,3 +28,7 @@ Makefile
 .vscode/launch.json
 .vscode/settings.json
 .vscode/tasks.json
+.idea/
+.kdev4/
+.vscode/
+

@@ -20,3 +20,10 @@ AHarvestMoonGameMode::AHarvestMoonGameMode()
 	}
 }
 
+void AHarvestMoonGameMode::StartPlay()
+{
+	BP_StartPlay();
+
+	Super::StartPlay();	
+}
+

@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameModeBase.h"
+#include "GameFramework/GameMode.h"
 #include "HarvestMoonGameMode.generated.h"
 
 UCLASS(minimalapi)
-class AHarvestMoonGameMode : public AGameModeBase
+class AHarvestMoonGameMode : public AGameMode
 {
 	GENERATED_BODY()
 
@@ -25,6 +25,9 @@ public:
 	// This function is called by AHarvestMoonGameMode::StartPlay()
 	UFUNCTION(BlueprintImplementableEvent, Category=Game)
 	void BP_StartPlay();
+
+	/** Tries to spawn the player's pawn at the specified actor's location */
+	virtual void RestartPlayerAtPlayerStart(AController* NewPlayer, AActor* StartSpot) override;
 };
 
 

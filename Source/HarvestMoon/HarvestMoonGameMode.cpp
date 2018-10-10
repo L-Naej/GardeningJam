@@ -7,7 +7,7 @@
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 AHarvestMoonGameMode::AHarvestMoonGameMode()
-	: AGameModeBase()
+	: AGameMode()
 {
 	// use our custom PlayerController class
 	PlayerControllerClass = AHarvestMoonPlayerController::StaticClass();
@@ -27,3 +27,13 @@ void AHarvestMoonGameMode::StartPlay()
 	Super::StartPlay();	
 }
 
+void AHarvestMoonGameMode::RestartPlayerAtPlayerStart(AController* NewPlayer, AActor* StartSpot)
+{
+	if(NewPlayer->GetPawn() != nullptr)
+	{
+		APawn* Pawn = NewPlayer->GetPawn();
+		Pawn->SetActorLocation(StartSpot->GetActorLocation());
+	}
+
+	Super::RestartPlayerAtPlayerStart(NewPlayer, StartSpot);
+}
